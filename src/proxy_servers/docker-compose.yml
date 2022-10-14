@@ -1,0 +1,15 @@
+services:
+  server:
+    # build a server from the server folder
+    build: ../server
+    # give a name for the image
+    image: simple_docker_image:1.0
+  proxy:
+    # download the nginx image from the docker hub
+    image: nginx
+    volumes:
+      # ./nginx.conf == /etc/nginx/nginx.conf on the nginx container
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      # local port 80 is now port 8080 of the nginx container
+      - 80:8080
